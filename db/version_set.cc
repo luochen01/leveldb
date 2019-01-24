@@ -1096,9 +1096,6 @@ void VersionSet::Finalize(Version* v) {
 
 	for (int level = 0; level < config::kNumLevels - 1; level++) {
 		int files = v->files_[level].size();
-		if (files == 0) {
-			break;
-		}
 		printf("level%d:%d\t", level, files);
 	}
 	printf("\n");
@@ -1346,6 +1343,7 @@ Compaction* VersionSet::PickCompaction() {
 	printf("Merge %d and %d components in level %d and %d\n",
 			(int) c->inputs_[0].size(), (int) c->inputs_[1].size(), level,
 			level + 1);
+	fflush(stdout);
 
 	return c;
 }
