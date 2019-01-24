@@ -1344,6 +1344,8 @@ Compaction* VersionSet::PickCompaction() {
 
   SetupOtherInputs(c);
 
+  printf("Merge %d and %d components in level %d and %d\n", (int)c->inputs_[0].size(), (int)c->inputs_[1].size(), level, level+1);
+
   return c;
 }
 
@@ -1399,7 +1401,6 @@ void VersionSet::SetupOtherInputs(Compaction* c) {
     current_->GetOverlappingInputs(level + 2, &all_start, &all_limit,
                                    &c->grandparents_);
   }
-
   // Update the place where we will do the next compaction for this level.
   // We update this immediately instead of waiting for the VersionEdit
   // to be applied so that if the compaction fails, we will try a different
