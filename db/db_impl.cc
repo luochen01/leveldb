@@ -1322,7 +1322,8 @@ WriteBatch* DBImpl::BuildBatchGroup(Writer** last_writer) {
 Status DBImpl::MakeRoomForWrite(bool force) {
 	mutex_.AssertHeld();
 	assert(!writers_.empty());
-	bool allow_delay = !force;
+	//bool allow_delay = !force;
+	bool allow_delay = false;
 	Status s;
 	while (true) {
 		if (!bg_error_.ok()) {
