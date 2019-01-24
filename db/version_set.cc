@@ -1094,7 +1094,7 @@ void VersionSet::Finalize(Version* v) {
 		}
 	}
 
-	for (int level = 0; level < level < config::kNumLevels - 1; level++) {
+	for (int level = 0; level < config::kNumLevels - 1; level++) {
 		int files = v->files_[level].size();
 		if (files == 0) {
 			break;
